@@ -1,0 +1,1 @@
+export { MovieModalList } from "./MovieModalList";
