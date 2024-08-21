@@ -13,7 +13,7 @@ type ItemProps = {
 
 export const Item = ({ movie, link = "" }: ItemProps) => {
   return (
-    <Link href={link ?? `movie/${movie.id}`}>
+    <Link href={link === "" ? `movie/${movie.id}` : link}>
       <Card className="flex flex-col border-none bg-slate-700/10 p-4 cursor-pointer hover:bg-slate-700/30 transition-all">
         <Image
           className="rounded-3xl self-center"
