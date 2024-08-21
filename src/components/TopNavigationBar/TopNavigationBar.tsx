@@ -15,7 +15,7 @@ export const TopNavigationBar = () => {
   const [movies, setMovies] = useState<SearchMoviesResponse>();
   const [isSearchInputFocused, setIsSearchInputFocused] = useState(false);
   return (
-    <div className="flex mx-auto align-middle justify-around p-1 rounded-full bg-slate-800 mt-6 w-full md:w-96 md:justify-normal">
+    <div className="flex mx-auto align-middle justify-around p-1 rounded-full bg-slate-800 m-6 w-full md:w-96 md:justify-normal">
       <SearchInput
         isSearchInputFocused={isSearchInputFocused}
         setIsSearchInputFocused={setIsSearchInputFocused}
