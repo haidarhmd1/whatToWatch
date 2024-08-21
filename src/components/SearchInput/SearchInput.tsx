@@ -62,12 +62,12 @@ export const SearchInput = ({
   }, [isPending, setIsMovieFetchingLoading]);
 
   return (
-    <div className="flex flex-col md:flex-row gap-2 md:gap-4 w-full">
+    <div className="flex flex-row gap-2 md:gap-4 w-full">
       <input
         onFocus={() => setIsSearchInputFocused(true)}
         disabled={!isOnline}
         type="text"
-        className={`flex-grow text-white text-md bg-slate-700 text-gray-900 rounded-full p-2.5 disabled:bg-gray-200 disabled:cursor-not-allowed`}
+        className={`flex-grow text-white text-md bg-slate-700 rounded-full p-2.5 disabled:bg-gray-200 disabled:cursor-not-allowed`}
         placeholder="Search for a movie... (e.g. Avatar...)"
         required
         value={searchTerm}

@@ -33,10 +33,10 @@ export default async function MovieDetails({ params }: MovieDetailsProps) {
         style={{
           backgroundImage: `url('${POSTER_URL}${movie.backdrop_path}')`,
         }}
-        className="relative h-[60vh] w-full bg-no-repeat bg-cover bg-top"
+        className="relative h-full md:h-[60vh] w-full bg-no-repeat bg-cover bg-top"
       >
-        <div className="relative grid grid-cols-[25%_75%] p-4 h-full z-10">
-          <div className="relative flex rounded-3xl overflow-hidden">
+        <div className="relative grid grid-cols-1 md:grid-cols-[25%_75%] p-4 h-full z-10">
+          <div className="relative hidden md:flex rounded-3xl overflow-hidden">
             <Image
               fill
               objectFit="contain"
@@ -93,7 +93,7 @@ export default async function MovieDetails({ params }: MovieDetailsProps) {
         <p className="ml-8 mt-4 text-white text-lg font-normal">
           Similar Movies:{" "}
         </p>
-        <div className="grid grid-cols-6 gap-4 p-4">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 p-4">
           {limitedRandomSimilar.map((similarMovie) => (
             <Item
               key={similarMovie.id}
