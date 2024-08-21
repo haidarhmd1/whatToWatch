@@ -55,7 +55,7 @@ export const List = ({
   return (
     <div className="mt-4">
       <Title className="mt-4 font-medium text-white" title={title} />
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {movieGenreDiscoverList.results.map((item) => {
           return <Item key={item.id} movie={item} />;
         })}
