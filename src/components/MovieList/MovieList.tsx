@@ -52,7 +52,11 @@ export const MovieList = ({
         ))}
       {movies.results.map((movie) => {
         return (
-          <div key={movie.id} onClick={() => onChangeRoute(movie.id)}>
+          <div
+            className="cursor-pointer"
+            key={movie.id}
+            onClick={() => onChangeRoute(movie.id)}
+          >
             <MovieItem movie={movie} />
           </div>
         );

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { SearchMoviesResponse } from "@/types/movie";
 import { Item } from "@/components/Item";
 import { getRandomMovieListEntries } from "@/helpers/getRandomMovieListEntries";
+import { MovieCredits } from "@/types/credits";
 
 type MovieDetailsProps = {
   params: { id: number };
@@ -19,6 +20,11 @@ export default async function MovieDetails({ params }: MovieDetailsProps) {
     options: "similar",
   });
 
+  const credits: MovieCredits = await getSingleMovieInformation({
+    id: params.id,
+    options: "credits",
+  });
+
   const limitedRandomSimilar = getRandomMovieListEntries(similar.results, 6);
 
   return (
@@ -29,12 +35,11 @@ export default async function MovieDetails({ params }: MovieDetailsProps) {
         }}
         className="relative h-[60vh] w-full bg-no-repeat bg-cover bg-top"
       >
-        <div className="relative flex p-4 h-full z-10">
-          <div className="flex">
+        <div className="relative grid grid-cols-[25%_75%] p-4 h-full z-10">
+          <div className="relative flex rounded-3xl overflow-hidden">
             <Image
-              className="rounded-3xl self-center"
-              width={300}
-              height={250}
+              fill
+              objectFit="contain"
               src={`${POSTER_URL}${movie.poster_path}`}
               alt={movie.original_title}
             />
@@ -68,8 +73,20 @@ export default async function MovieDetails({ params }: MovieDetailsProps) {
               <IoMdTimer color="white" className="mr-2" />
               <p className="text-white">{movie.runtime} min</p>
             </div>
+
+            <div className="flex mt-4 max-w-[400px] overflow-auto">
+              {credits.cast.map((cast) => (
+                <div
+                  key={cast.id}
+                  className="p-2 bg-slate-700/20 border rounded-lg text-xs text-white mt-4 mr-2 items-center min-w-[120px]"
+                >
+                  {cast.original_name}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+
         <div className="backdrop-blur-md backdrop-brightness-150 bg-black/30 absolute bottom-0 w-full h-full"></div>
       </div>
       <>
