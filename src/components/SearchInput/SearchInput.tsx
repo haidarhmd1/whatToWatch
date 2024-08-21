@@ -1,9 +1,9 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { searchMovie } from '../../network/api';
-import { SearchMoviesResponse } from '../../types/movie';
-import { Button } from '../general';
-import { useMutation } from '@tanstack/react-query';
-import { IoClose, IoSearch } from 'react-icons/io5';
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { searchMovie } from "../../network/api";
+import { SearchMoviesResponse } from "../../types/movie";
+import { Button } from "../general";
+import { useMutation } from "@tanstack/react-query";
+import { IoClose, IoSearch } from "react-icons/io5";
 
 type SearchInputProps = {
   setMovieQuery: Dispatch<SetStateAction<string>>;
@@ -26,7 +26,7 @@ export const SearchInput = ({
     mutationFn: searchMovie,
   });
 
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -34,9 +34,9 @@ export const SearchInput = ({
 
   const onCloseHandler = () => {
     setMovies(undefined);
-    setMovieQuery('');
+    setMovieQuery("");
     setIsSearchInputFocused(false);
-    setSearchTerm('');
+    setSearchTerm("");
   };
 
   const onClickHandler = async () => {
@@ -50,9 +50,9 @@ export const SearchInput = ({
   };
 
   const onKeyDownHandler = async (
-    event: React.KeyboardEvent<HTMLInputElement>,
+    event: React.KeyboardEvent<HTMLInputElement>
   ) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       await onClickHandler();
     }
   };
@@ -67,7 +67,7 @@ export const SearchInput = ({
         onFocus={() => setIsSearchInputFocused(true)}
         disabled={!isOnline}
         type="text"
-        className={`flex-grow text-md bg-slate-700 text-gray-900 rounded-full p-2.5 disabled:bg-gray-200 disabled:cursor-not-allowed`}
+        className={`flex-grow text-white text-md bg-slate-700 text-gray-900 rounded-full p-2.5 disabled:bg-gray-200 disabled:cursor-not-allowed`}
         placeholder="Search for a movie... (e.g. Avatar...)"
         required
         value={searchTerm}

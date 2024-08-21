@@ -14,6 +14,10 @@ export const MovieList = ({
   movies,
   isMovieFetchingLoading,
 }: MovieListProps) => {
+  const onChangeRoute = (id: number) => {
+    window.location.pathname = `movie/${id}`;
+  };
+
   if (isMovieFetchingLoading) {
     return (
       <div className="bg-slate-800 m-8 rounded-3xl">
@@ -48,7 +52,7 @@ export const MovieList = ({
         ))}
       {movies.results.map((movie) => {
         return (
-          <div key={movie.id}>
+          <div key={movie.id} onClick={() => onChangeRoute(movie.id)}>
             <MovieItem movie={movie} />
           </div>
         );
