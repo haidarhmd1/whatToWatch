@@ -1,3 +1,4 @@
+"use client";
 type CardProps = {
   children: React.ReactNode;
   className?: string;
@@ -6,7 +7,7 @@ type CardProps = {
 
 export const Card = ({
   children,
-  className = '',
+  className = "",
   onClick = () => {},
 }: CardProps) => {
   return (

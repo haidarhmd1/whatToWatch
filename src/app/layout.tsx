@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
+import { Montserrat } from "next/font/google";
 import QueryProvider from "@/providers/QueryProvider";
 import { TopNavigationBar } from "@/components/TopNavigationBar/TopNavigationBar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Montserrat({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "What to Watch",

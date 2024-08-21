@@ -1,14 +1,15 @@
-import { useGetGenres } from '../../hooks/useQueries';
-import { Genre } from '../../types/genres';
-import { Card } from '../general/Card';
-import { Error } from '../general/Error';
-import { Skeleton } from '../general/Skeleton';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import { useGetGenres } from "../../hooks/useQueries";
+import { Genre } from "../../types/genres";
+import { Card } from "../general/Card";
+import { Error } from "../general/Error";
+import { Skeleton } from "../general/Skeleton";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { useState } from "react";
+import { List } from "../List";
 
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
     items: 8,
   },
@@ -27,6 +28,8 @@ const responsive = {
 };
 
 export const GenreList = () => {
+  const [genreName, setGenreName] = useState<string>("Action");
+  const [discoverQuery, setDiscoverQuery] = useState<string>("");
   const { data, isLoading, isError } = useGetGenres();
 
   if (isError) {
@@ -47,17 +50,15 @@ export const GenreList = () => {
     );
   }
 
-  const genresWithAll: Genre[] = [
-    { id: -1, name: 'All' },
-    ...(data?.genres || []),
-  ];
-
   return (
     <div className="my-8">
       <Carousel responsive={responsive}>
-        {genresWithAll.map((genre: Genre) => (
+        {data?.genres.map((genre: Genre) => (
           <Card
-            onClick={() => console.log(genre.id)}
+            onClick={() => {
+              setDiscoverQuery(`with_genres=${genre.id}`);
+              setGenreName(genre.name);
+            }}
             key={genre.id}
             className="text-center mr-4 min-w-[200px]: cursor-pointer p-8 border-none shadow-xl bg-slate-800 hover:shadow-sm hover:bg-slate-700 transition-all"
           >
@@ -65,6 +66,11 @@ export const GenreList = () => {
           </Card>
         ))}
       </Carousel>
+      <List
+        title={genreName}
+        isGetGenreLoading={isLoading}
+        discoverQuery={discoverQuery}
+      />
     </div>
   );
 };
